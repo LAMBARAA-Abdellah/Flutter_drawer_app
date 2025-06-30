@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // 👈 pour charger .env
 import 'pages/home_page.dart';
 import 'pages/counter_page.dart';
 import 'pages/contacts_page.dart';
@@ -6,7 +7,16 @@ import 'pages/weather_page.dart';
 import 'pages/gallery_page.dart';
 import 'pages/quiz_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 🔐 Charger .env AVANT runApp()
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    debugPrint("❌ .env loading failed: $e");
+  }
+
   runApp(const NewDrawerApp());
 }
 

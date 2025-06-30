@@ -37,8 +37,8 @@ class _WeatherPageState extends State<WeatherPage> {
 
       final response = await http.get(uri);
 
-      print("Status: ${response.statusCode}");
-      print("Body: ${response.body}");
+      //print("Status: ${response.statusCode}");
+      //print("Body: ${response.body}");
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
