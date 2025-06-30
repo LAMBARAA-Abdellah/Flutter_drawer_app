@@ -1,93 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'quiz_page.dart';
-import 'weather_page.dart';
+import 'pages/home_page.dart';
+import 'pages/counter_page.dart';
+import 'pages/contacts_page.dart';
+import 'pages/weather_page.dart';
+import 'pages/gallery_page.dart';
+import 'pages/quiz_page.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  try {
-    await dotenv.load(fileName: ".env");
-  } catch (e) {
-    debugPrint("⚠️ Failed to load .env file: $e");
-  }
-
-  runApp(const MyApp());
+void main() {
+  runApp(const NewDrawerApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NewDrawerApp extends StatelessWidget {
+  const NewDrawerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'II-BDCC',
+      title: 'Drawer Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
       ),
-      home: const HomeTabs(),
-    );
-  }
-}
-
-class HomeTabs extends StatefulWidget {
-  const HomeTabs({super.key});
-
-  @override
-  State<HomeTabs> createState() => _HomeTabsState();
-}
-
-class _HomeTabsState extends State<HomeTabs> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  final List<Widget> pages = [
-    const QuizPage(),
-    const WeatherPage(),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: pages.length, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('II-BDCC'),
-        backgroundColor: Colors.teal,
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.teal,
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: Colors.orange,
-              labelColor: Colors.orange,
-              unselectedLabelColor: Colors.white,
-              tabs: const [
-                Tab(icon: Icon(Icons.quiz), text: 'Quiz'),
-                Tab(icon: Icon(Icons.cloud), text: 'Weather'),
-              ],
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: pages,
-            ),
-          ),
-        ],
-      ),
+      home: const HomePage(),
+      routes: {
+        '/quiz': (_) => const QuizPage(),
+        '/counter': (_) => const CounterPage(),
+        '/contacts': (_) => const ContactsPage(),
+        '/weather': (_) => const WeatherPage(),
+        '/gallery': (_) => const GalleryPage(),
+      },
     );
   }
 }
