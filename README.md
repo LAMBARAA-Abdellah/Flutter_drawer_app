@@ -1,98 +1,92 @@
-# II-BDCC Flutter App – Modules Quiz & Weather
+# 🧭 Flutter Drawer Demo App – II-BDCC
 
-This project is a Flutter web/mobile application featuring two main modules:
-
----
-
-## 📘 1. Quiz Module
-
-### 🧩 Description:
-The quiz module displays 10 multiple-choice questions (MCQs) about Flutter, Dart, Java, etc.
-
-- ✅ Each question has 4 options.
-- ✅ The user selects an answer and presses "Next".
-- ✅ At the end, the score is displayed: `You scored X out of 10`.
-- ✅ A "Restart Quiz" button allows retrying the quiz.
-
-### 🔧 Technical Features:
-- `List<Question>` to store questions.
-- `setState()` used to track current question and selected answer.
-- Score is calculated in real-time.
-- Visual feedback for selected answers.
-
-### 📸 Screenshots:
-### Quiz questions:
-![Quiz Question](captures/quiz_questions.jpg)
-### Quiz score:
-![Quiz Result](captures/score_quiz.jpg)
+Ce projet Flutter présente une application modulaire avec un menu **Drawer** élégant et fonctionnel. Chaque module est indépendant et montre un aspect clé d’une app Flutter moderne.
 
 ---
 
-## 🌦 2. Weather Module
+## 📁 Modules inclus
 
-### 🌍 Description:
-Allows the user to search a city and get the 5-day forecast from OpenWeatherMap.
+### 📌 1. **Drawer personnalisé**
+- Affiche la photo de profil (📷 intégrée avec Asset)
+- Navigation vers toutes les pages
+- Composants modulaires :
+  - `drawer.header.widget.dart`
+  - `drawer.item.widget.dart`
+  - `mydrawer.widget.dart`
 
-- ✅ Uses OpenWeatherMap API
-- ✅ `.env` file holds the API key (for security)
-- ✅ Weather data filtered at 12:00:00 each day
-- ✅ Displayed as cards (date + description + temperature)
-
-### 🔧 Technical Features:
-- Uses `flutter_dotenv` to load `.env`
-- Uses `http` for GET requests to weather API
-- Handles errors and loading states
-- Compatible with Flutter Web (declared `.env` in assets)
-
-### 📸 Screenshot:
-### Weather resulat for my city Safi: 
-![Weather Forecast](captures/weather.jpg)
+![Drawer](captures/final_design.jpg)
 
 ---
 
-## 🔐 Example `.env` File (at project root)
-```
-OPENWEATHER_API_KEY=your_openweathermap_api_key
-```
+### 🧑‍🤝‍🧑 2. **ContactsPage (Famille Lambaraa)**
+- Liste des membres de la famille
+- Design avec cartes, avatars et séparation claire
+
+![Contacts](captures/contacts.PNG)
 
 ---
 
-## 📁 Folder Structure Summary
-```
-lib/
-├── main.dart          # App entry with TabBar (Quiz / Weather)
-├── quiz_page.dart     # Quiz logic, scoring, and UI
-├── weather_page.dart  # API call, filtering, and UI display
+### ➕➖ 3. **CounterPage**
+- Compteur simple avec boutons flottants
+- Design épuré et responsive
 
+![Counter](captures/counter.jpg)
 
-└── .env               # API key stored here
+---
 
-captures/
-├── quiz_questions.jpg # Screenshot of quiz interface
-├── score_quiz.jpg     # Screenshot of final quiz result
-└── weather.jpg        # Screenshot of weather module
+### 🌦️ 4. **WeatherPage**
+- Recherche météo par ville (via API OpenWeatherMap)
+- Résultats filtrés (8 prévisions)
+- Données extraites via `.env`
+
+![Weather](captures/weather.jpg)
+
+---
+
+### 🖼️ 5. **GalleryPage**
+- Affiche une grille d’images
+- Utilisation de `GridView.count`
+
+![Gallery](captures/gallery.jpg)
+
+---
+
+### 🏠 6. **HomePage**
+- Page d’accueil simple avec texte de bienvenue
+- Accessible via le Drawer
+
+![Home](captures/home.jpg)
+
+---
+
+## 🔐 Sécurité & Configuration
+
+- API Key stockée dans `.env`
+- Chargée via `flutter_dotenv`
+- Ajoutée dans `pubspec.yaml` :
+
+```yaml
+assets:
+  - .env
+  - images/profile.jpeg
 ```
 
 ---
 
-## ✅ How to Run
+## ✅ Lancer l'application
 
 ```bash
+flutter clean
 flutter pub get
 flutter run -d chrome
 ```
 
-Make sure your `.env` file is added in `pubspec.yaml`:
-
-```yaml
-flutter:
-  uses-material-design: true
-  assets:
-    - .env
-```
+> ⚠️ L'image de profil se trouve dans `images/profile.jpeg` et est utilisée dans `DrawerHeader`.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Auteur
 
-Abdellah Lambaraa – II-BDCC Project
+**Abdellah Lambaraa**  
+II-BDCC Flutter Project  
+© 2025
